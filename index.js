@@ -5,7 +5,7 @@ const axios = require('axios');
 
 
 async function askUserToGuess(word){
-    console.log(word);
+    
     let answers = await inquirer
                 .prompt([
                     {
@@ -23,17 +23,28 @@ async function askUserToGuess(word){
                         }
                     }
                 ])
+    
+
     if(word.checkLetter(answers.letter)){
         console.log("CORRECT!");
-    }else{
+    }else if(guessedLetters.indexOf(answers.letter) == -1){
         attempts--;
         console.warn("WRONG!");
         console.log("you have "+attempts+" remaining!");
+        if(attempts == 0){
+            console.warn("You lost!!");
+            return
+        }
+    }else{
+        console.log("You've guessed it already!")
     }
+
     console.log(word.outputWord())
+    guessedLetters.push(answers.letter);
+    
     if (word.guessedAll()){
         console.log("Yout got it right!! Next word:")
-        // askUserToGuess(new Word());
+        init();
     }else{
         askUserToGuess(word);
     }
@@ -41,7 +52,6 @@ async function askUserToGuess(word){
 
 function getCountries(){
     return new Promise(async (resolve,reject)=>{
-        let contries = [];
         try{
             const response = await axios.get('https://restcountries.eu/rest/v2/all')
             const data = response.data;
@@ -60,11 +70,21 @@ function getCountries(){
 
 
 let attempts = 12;
-const word = new Word("ttta");
+let contries = [];
+let guessedLetters = [];
 getCountries().then((contries)=>{
-    const i = Math.floor(Math.random()*contries.length);
-    askUserToGuess(new Word(contries[i]));
+    contries = contries;
+    init();
 });
 
 
-// console.log(word.outputWord())
+function init(){
+    attempts = 12;
+    guessedLetters=[];
+    const i = Math.floor(Math.random()*contries.length);
+    console.log(contries[i]);
+    word = new Word(contries[i]) 
+    console.log(word.outputWord())
+    askUserToGuess(word);
+    
+}

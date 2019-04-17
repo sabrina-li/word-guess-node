@@ -3,15 +3,9 @@ const Letter = require("./letter")
 class Word{
     constructor(wordInput){
         this.letters = [];
-        //TODO:check alphabetic and space
         if(typeof wordInput == "string"){
-            var letters = /[a-zA-Z]/;
             wordInput.split('').forEach(letter=>{
-                if(letter.match(letters)){
-                    this.letters.push(new Letter(letter));
-                }else{
-                    this.letters.push(new Letter(' '));
-                }
+                this.letters.push(new Letter(letter));
             })
         }else{
             throw "Invalid input. Word needs to be string"  
@@ -25,7 +19,7 @@ class Word{
         })
         return outputWord;
     }
-
+//check if already guessed
     checkLetter(input){
         let correctGuess = false;
         this.letters.forEach(letter=>{

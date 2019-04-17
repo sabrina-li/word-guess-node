@@ -1,11 +1,12 @@
 class Letter{
     constructor(letter){
         if(typeof letter == "string"){
-            if(letter == ' '){
+            var letters = /[a-zA-Z]/;
+            if(!letter.match(letters)){
                 this.letter = letter;
                 this.guessed = true;//ignore spaces
             }else{
-                this.letter = letter.toLowerCase();
+                this.letter = letter
                 this.guessed = false;//initially not guessed
             }
             
@@ -22,7 +23,7 @@ class Letter{
         let correct = false;
         if(typeof input == "string"){
             if(!this.guessed){
-                this.guessed = (input.toLowerCase() === this.letter);
+                this.guessed = (input.toLowerCase() === this.letter.toLowerCase());
                 correct = this.guessed;
             }
         }else{
