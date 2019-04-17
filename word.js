@@ -3,6 +3,7 @@ const Letter = require("./letter")
 class Word{
     constructor(wordInput){
         this.letters = [];
+        //TODO:check alphabetic
         if(typeof wordInput == "string"){
             wordInput.split('').forEach(letter=>{
                 this.letters.push(new Letter(letter));

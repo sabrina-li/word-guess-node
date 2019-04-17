@@ -1,0 +1,20 @@
+{
+  "name": "word-guess-node",
+  "version": "1.0.0",
+  "description": "word guess game with constructors using nodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabrina-li/word-guess-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sabrina-li/word-guess-node/issues"
+  },
+  "homepage": "https://github.com/sabrina-li/word-guess-node#readme",
+  "dependencies": {}
+}
