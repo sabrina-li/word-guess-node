@@ -14,7 +14,7 @@ class Letter{
 
     checkLetter(input){
         if(typeof input == "string"){
-            this.guessed = (input.toLowerCase() === this.letter);
+            this.guessed = (this.guessed || input.toLowerCase() === this.letter);
         }else{
             throw "Invalid input. Letter needs to be string"  
         }
