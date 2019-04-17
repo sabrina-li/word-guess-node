@@ -18,6 +18,7 @@ class Letter{
         }else{
             throw "Invalid input. Letter needs to be string"  
         }
+        return this.guessed;
     }
 }
 

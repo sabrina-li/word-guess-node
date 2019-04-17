@@ -3,7 +3,7 @@ const Letter = require("./letter")
 class Word{
     constructor(wordInput){
         this.letters = [];
-        //TODO:check alphabetic
+        //TODO:check alphabetic and space
         if(typeof wordInput == "string"){
             wordInput.split('').forEach(letter=>{
                 this.letters.push(new Letter(letter));
@@ -22,10 +22,26 @@ class Word{
     }
 
     checkLetter(input){
+        let correctGuess = false;
         this.letters.forEach(letter=>{
-            letter.checkLetter(input);
+            if(letter.checkLetter(input)){
+                correctGuess = true;
+            }
         })
+        return correctGuess;
+    }
+
+    guessedAll(){
+        let guessedAll = true;
+        this.letters.forEach(letter=>{
+            if(!letter.guessed){
+                guessedAll = false;
+            }
+        })
+        return guessedAll;
     }
 }
 
 module.exports = Word;
+
+
