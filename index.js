@@ -68,16 +68,6 @@ function getCountries(){
    
 }
 
-
-let attempts = 12;
-let contries = [];
-let guessedLetters = [];
-getCountries().then((contries)=>{
-    contries = contries;
-    init();
-});
-
-
 function init(){
     attempts = 12;
     guessedLetters=[];
@@ -85,6 +75,23 @@ function init(){
     console.log(contries[i]);
     word = new Word(contries[i]) 
     console.log(word.outputWord())
-    askUserToGuess(word);
-    
+    askUserToGuess(word);   
 }
+
+
+
+let attempts = 12;
+let contries = [];
+let guessedLetters = [];
+console.log("Welcome! This is a word guess game for all the contries int he world!")
+process.stdout.write("getting contries...");
+let timer = setInterval(() => {
+    process.stdout.write('.');
+}, 500);
+
+getCountries().then((contries)=>{
+    clearInterval(timer);
+    process.stdout.write('\n');
+    contries = contries;
+    init();
+});
