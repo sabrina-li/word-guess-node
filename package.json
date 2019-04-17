@@ -16,5 +16,7 @@
     "url": "https://github.com/sabrina-li/word-guess-node/issues"
   },
   "homepage": "https://github.com/sabrina-li/word-guess-node#readme",
-  "dependencies": {}
+  "dependencies": {
+    "inquirer": "^6.3.1"
+  }
 }
