@@ -3,7 +3,6 @@ const inquirer = require('inquirer');
 
 
 async function askUserToGuess(word){
-    console.log(word);
     let answers = await inquirer
                 .prompt([
                     {
@@ -25,22 +24,22 @@ async function askUserToGuess(word){
         console.log("CORRECT!");
     }else{
         attempts--;
-        console.log("WRONG!");
+        console.error("WRONG!");
         console.log("you have "+attempts+" remaining!");
     }
     console.log(word.outputWord())
     if (word.guessedAll()){
         console.log("Yout got it right!! Next word:")
+        // askUserToGuess(new Word());
+    }else{
+        askUserToGuess(word);
     }
     
-    await askUserToGuess(word);
+    
 }
 
 let attempts = 12;
 const word = new Word("ttta");
-word.checkLetter('t');
-console.log(word);
-word.checkLetter('a');
-console.log(word);
-// askUserToGuess(word);
+
+askUserToGuess(word);
 // console.log(word.outputWord())
