@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sabrina-li/word-guess-node#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "inquirer": "^6.3.1"
   }
 }

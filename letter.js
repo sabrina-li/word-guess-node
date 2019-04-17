@@ -1,8 +1,14 @@
 class Letter{
     constructor(letter){
         if(typeof letter == "string"){
-            this.letter = letter.toLowerCase();
-            this.guessed = false;//initially not guessed
+            if(letter == ' '){
+                this.letter = letter;
+                this.guessed = true;//ignore spaces
+            }else{
+                this.letter = letter.toLowerCase();
+                this.guessed = false;//initially not guessed
+            }
+            
         }else{
             throw "Invalid input. Letter needs to be string"  
         }

@@ -5,8 +5,13 @@ class Word{
         this.letters = [];
         //TODO:check alphabetic and space
         if(typeof wordInput == "string"){
+            var letters = /[a-zA-Z]/;
             wordInput.split('').forEach(letter=>{
-                this.letters.push(new Letter(letter));
+                if(letter.match(letters)){
+                    this.letters.push(new Letter(letter));
+                }else{
+                    this.letters.push(new Letter(' '));
+                }
             })
         }else{
             throw "Invalid input. Word needs to be string"  

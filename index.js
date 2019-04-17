@@ -1,8 +1,11 @@
 const  Word = require("./word");
 const inquirer = require('inquirer');
+const axios = require('axios');
+
 
 
 async function askUserToGuess(word){
+    console.log(word);
     let answers = await inquirer
                 .prompt([
                     {
@@ -24,7 +27,7 @@ async function askUserToGuess(word){
         console.log("CORRECT!");
     }else{
         attempts--;
-        console.error("WRONG!");
+        console.warn("WRONG!");
         console.log("you have "+attempts+" remaining!");
     }
     console.log(word.outputWord())
@@ -34,12 +37,34 @@ async function askUserToGuess(word){
     }else{
         askUserToGuess(word);
     }
-    
-    
 }
+
+function getCountries(){
+    return new Promise(async (resolve,reject)=>{
+        let contries = [];
+        try{
+            const response = await axios.get('https://restcountries.eu/rest/v2/all')
+            const data = response.data;
+            
+            data.forEach(element => {
+                contries.push(element.name);
+            });
+
+            resolve(contries);
+        }catch(err){
+            reject(err);
+        }
+    })
+   
+}
+
 
 let attempts = 12;
 const word = new Word("ttta");
+getCountries().then((contries)=>{
+    const i = Math.floor(Math.random()*contries.length);
+    askUserToGuess(new Word(contries[i]));
+});
 
-askUserToGuess(word);
+
 // console.log(word.outputWord())
