@@ -26,7 +26,7 @@ async function askUserToGuess(word){
     
     if(word.checkLetter(answers.letter)){
         console.log("CORRECT!");
-    }else if(guessedLetters.indexOf(answers.letter) == -1){
+    }else if(guessedLetters.indexOf(answers.letter.toLowerCase()) == -1){
         attempts--;
         console.warn("WRONG!");
         console.log("you have "+attempts+" remaining!");
@@ -39,7 +39,7 @@ async function askUserToGuess(word){
     }
 
     console.log(word.outputWord())
-    if(guessedLetters.indexOf(answers.letter) == -1){
+    if(guessedLetters.indexOf(answers.letter.toLowerCase()) == -1){
         guessedLetters.push(answers.letter.toLowerCase());
     }
 
