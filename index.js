@@ -24,7 +24,6 @@ async function askUserToGuess(word){
                     }
                 ])
     
-
     if(word.checkLetter(answers.letter)){
         console.log("CORRECT!");
     }else if(guessedLetters.indexOf(answers.letter) == -1){
@@ -43,13 +42,15 @@ async function askUserToGuess(word){
     if(guessedLetters.indexOf(answers.letter) == -1){
         guessedLetters.push(answers.letter.toLowerCase());
     }
-    
+
+    console.log("=======================")
     if (word.guessedAll()){
         console.log("Yout got it right!! Next word:")
         init();
     }else{
         askUserToGuess(word);
     }
+
 }
 
 function getCountries(){
@@ -74,9 +75,11 @@ function init(){
     attempts = 12;
     guessedLetters=[];
     const i = Math.floor(Math.random()*contries.length);
-    console.log(contries[i]);
+    console.log("Hint:",contries[i]);
+    
     word = new Word(contries[i]) 
     console.log(word.outputWord())
+    console.log("=======================")
     askUserToGuess(word);   
 }
 
