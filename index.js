@@ -40,7 +40,9 @@ async function askUserToGuess(word){
     }
 
     console.log(word.outputWord())
-    guessedLetters.push(answers.letter);
+    if(guessedLetters.indexOf(answers.letter) == -1){
+        guessedLetters.push(answers.letter.toLowerCase());
+    }
     
     if (word.guessedAll()){
         console.log("Yout got it right!! Next word:")
