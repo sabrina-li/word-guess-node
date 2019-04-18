@@ -1,4 +1,5 @@
-const  Word = require("./word");
+'use strict'
+const Word = require("./word");
 const inquirer = require('inquirer');
 const axios = require('axios');
 
@@ -77,7 +78,7 @@ function init(){
     const i = Math.floor(Math.random()*contries.length);
     console.log("Hint:",contries[i]);
     
-    word = new Word(contries[i]) 
+    const word = new Word(contries[i]) 
     console.log(word.outputWord())
     console.log("=======================")
     askUserToGuess(word);   
